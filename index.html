@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="script.js"></script>
+    <title>Weather App</title>
+</head>
+<body>
+    <section class="main">
+        <!--Container for search, button and icon-->
+        <div class="container1">
+            <div class="search">
+                <input type="text" placeholder="Enter city...">
+                <button id="searchButton">Get</button>
+                <span class="msg"></span> <!--Msg if city not found-->
+            </div>
+            <div class="icon">
+                <img src="" alt="currentIcon" class="currentIcon">
+            </div>
+        </div>
+        <!--Container to display current temp and location-->
+        <div class="weather-info">
+            <div class="currentTemp">
+                 <h1 class="currentTempC">25℃</h1>
+            </div>
+            <div class="currentLocation">
+                <h2>Melbourne</h2>
+            </div>
+        </div>
+        <div class="weather-infoContainer">
+            <div class="feels-like">
+                <p id="feels-like">Feels Like</p>
+            </div>
+            <div class="humidity">
+                <p id="humidity">Humidity</p>
+            </div>
+            <div class="wind">
+                <p id="wind">Wind</p>
+            </div>
+            <div class="precip">
+                <p id="precip">Precipitation</p>
+            </div>
+        </div>
+    </section>
+    <section class="weeklyForecast">
+        <!--Container for weekly forecast-->
+        <div class="weeklyForecastContainer">
+            <div>
+                <span>7-day Forecast</span>
+             </div>
+             <div class="forecastCards">
+                <div class="cardDay">
+                    <p>Mon</p>
+                    <i>icon</i>
+                    <p class="tempForecast">temp</p>
+                 </div>
+                <div class="cardDay">
+                    <p>Tue</p>
+                    <i>icon</i>
+                 <p class="tempForecast">temp</p>
+                </div>
+                <div class="cardDay">
+                    <p>Wed</p>
+                    <i>icon</i>
+                 <p class="tempForecast">temp</p>
+                 </div>
+                <div class="cardDay">
+                    <p>Thu</p>
+                     <i>icon</i>
+                    <p class="tempForecast">temp</p>
+                </div>
+                <div class="cardDay">
+                    <p>Fri</p>
+                    <i>icon</i>
+                    <p class="tempForecast">temp</p>
+                </div>
+                <div class="cardDay">
+                    <p>Sat</p>
+                    <i>icon</i>
+                 <p class="tempForecast">temp</p>
+                </div>
+                <div class="cardDay">
+                    <p>Sun</p>
+                    <i>icon</i>
+                    <p class="tempForecast">temp</p>
+                </div>
+        </div>
+    </section>
+</body>
+</html>
