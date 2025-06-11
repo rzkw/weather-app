@@ -27,33 +27,40 @@ async function getWeather() {
 
 }
 
+// Function to display current weather in weather-infoContainer
+
 function displayCurrentWeather(data) {
     const weatherInfo = document.getElementById('weather-info');
-    const feelsLike = document.getElementById('weather-infoContainer');
-    const humidity = document.getElementById('weather-infoContainer');
-    const wind = document.getElementById('weather-infoContainer');
-    const precipitation = document.getElementById('weather-infoContainer');
+    const infoContainer = document.getElementById('weather-infoContainer');
+
+    // Displays current temp in Celsius and city name
+
     weatherInfo.innerHTML = `
     <h1>${data.main.temp}℃</h1>
     <h2>${data.name}</h2>
     `;
-    feelsLike.innerHTML = `
-    <p id="feels-like">Feels Like:</p><span>${data.main.feels_like}℃</span>
-    `;
-    humidity.innerHTML = `
-     <p id="Humidity">Humidity:</p><span>${data.main.humidity}</span>
-    `;
-    wind.innerHTML = `
-     <p id="wind">Wind:</p><span>${data.main.wind}</span>
-    `;
-    precipitation.innerHTML = `
-     <p id="precipitation">Precipitation:</p><span>${data.main.precipitation}</span>
+
+    // Displays detailed variables with labels
+
+    infoContainer.innerHTML = `
+    <div class="feels-like">
+        <p>Feels Like: ${data.main.feels_like}℃</p>
+    </div>
+    <div class="humidity">
+        <p>Humidity: ${data.main.humidity}%</p>
+    </div>
+    <div class="wind">
+        <p>Wind: ${data.wind.speed}m/s</p>
+    </div>
+    <div class="precip">
+        <p>Precipitation: ${data.rain ? data.rain['1h'] + 'mm' : 'None'}</p>
+    </div>
     `;
 
 }
    
 function displayForecast(data) {
-    const forecastBody = document.getElementById('weeklyForecastContainer');
+    const forecastBody = document.getElementById('forecastCards');
     forecastBody.innerHTML = '';
 
     // Filter daily forecast from 3-hour intervals
@@ -62,8 +69,7 @@ function displayForecast(data) {
         const date = new Date(forecast.dt_txt).toLocaleDateString();
         forecastBody.innerHTML += `
         <p>${date}</p>
-        <p>${forecast.main.temp}°C</p>
-        `;
+        <p>${forecast.main.temp}°C</p>`;
 
     })
 }
