@@ -1,5 +1,5 @@
 const API_KEY = 'c2367690c029d7ee75b4916b92ad0f54';
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 
 async function getWeather() {
     const city = document.getElementById('cityInput').value;
@@ -10,12 +10,13 @@ async function getWeather() {
 
     try {
         // Fetch current weather from OpenWeather API
-        const weatherResponse = await fetch(`${ BASE_URL}weather?q=${city}&appid=${API_KEY}&units=metric`);
+        const weatherResponse = await fetch(`${BASE_URL}weather?q=${city}&appid=${API_KEY}&units=metric`);
         const weatherData = await weatherResponse.json();
+        console.log('Actual API response:', weatherData) // log actual response from API to see what data I have to work with
         displayCurrentWeather(weatherData);
     
         // Fetch week forecast
-        const forecastResponse = await fetch(`${ BASE_URL}forecast?q=${city}&appid=${API_KEY}&units=metric`);
+        const forecastResponse = await fetch(`${BASE_URL}forecast?q=${city}&appid=${API_KEY}&units=metric`);
         const forecastData = await forecastResponse.json();
         displayForecast(forecastData);
 
@@ -28,12 +29,29 @@ async function getWeather() {
 
 function displayCurrentWeather(data) {
     const weatherInfo = document.getElementById('weather-info');
+    const feelsLike = document.getElementById('weather-infoContainer');
+    const humidity = document.getElementById('weather-infoContainer');
+    const wind = document.getElementById('weather-infoContainer');
+    const precipitation = document.getElementById('weather-infoContainer');
     weatherInfo.innerHTML = `
-    <h1>${data.main.temp}</h1>
-    <h2>${data.location}</h2>
+    <h1>${data.main.temp}℃</h1>
+    <h2>${data.name}</h2>
     `;
-}
+    feelsLike.innerHTML = `
+    <p id="feels-like">Feels Like:</p><span>${data.main.feels_like}℃</span>
+    `;
+    humidity.innerHTML = `
+     <p id="Humidity">Humidity:</p><span>${data.main.humidity}</span>
+    `;
+    wind.innerHTML = `
+     <p id="wind">Wind:</p><span>${data.main.wind}</span>
+    `;
+    precipitation.innerHTML = `
+     <p id="precipitation">Precipitation:</p><span>${data.main.precipitation}</span>
+    `;
 
+}
+   
 function displayForecast(data) {
     const forecastBody = document.getElementById('weeklyForecastContainer');
     forecastBody.innerHTML = '';
@@ -50,6 +68,8 @@ function displayForecast(data) {
     })
 }
 
-msg.textContent = "";
-form.reset();
-input.focus();
+document.getElementById('searchButton').addEventListener('click',getWeather);
+
+// msg.textContent = "";
+// form.reset();
+// input.focus();
