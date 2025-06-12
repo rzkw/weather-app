@@ -168,27 +168,32 @@ function displayCurrentWeather(data) {
      forecastBody.innerHTML = '';
 
      //WeatherAPI forecast structure
-     if (data.forecast && data.forecast.forecastDay) {
+     if (data.forecast && data.forecast.forecastday) {
         data.forecast.forecastday.forEach(day => {
             const date = new Date(day.date).toLocaleDateString('en-US', {
                 weekday: 'short',
-                month: 'short',
-                day: 'numeric'
             });
 
             const forecastCard = document.createElement('div');
-            forecastCard.className = 'forecast-card';
+            forecastCard.className = 'cardDay';
             forecastCard.innerHTML = `
-            <div class="forecast-date">${date}</div>
-            <div class="forecast-temp">
-                <span class="temp-high">${Math.round(day.day.maxtemp_c)}°</span>
-                <span class=temp-low">${Math.round(day.day.mintemp_c)}°</span>
-            <div class="forecast-condition">${day.day.condition.text}</div>
-            <div class="forecast-rain">${day.day.daily_chance_of_rain}% rain</div>
+                <p>${date}</p>
+                <i></i>
+                <p class="tempForecast">${Math.round(day.day.maxtemp_c)}°/${Math.round(day.day.mintemp_c)}°</p>
             `;
+            // `
+            // <div class="forecast-date">${date}</div>
+            // <div class="forecast-temp">
+            //     <span class="temp-high">${Math.round(day.day.maxtemp_c)}°</span>
+            //     <span class="temp-low">${Math.round(day.day.mintemp_c)}°</span>
+            // <div class="forecast-condition">${day.day.condition.text}</div>
+            // <div class="forecast-rain">${day.day.daily_chance_of_rain}% rain</div>
+            // `;
 
             forecastBody.appendChild(forecastCard);
         });
+     }  else {
+        console.log('Forecast data structure:', data);
      }
 }
 
