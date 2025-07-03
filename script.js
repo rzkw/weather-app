@@ -136,10 +136,16 @@ function displayCurrentWeather(data) {
 
     const weatherInfo = document.getElementById('weather-info');
     const infoContainer = document.getElementById('weather-infoContainer');
-
+    const currentIcon = document.querySelector('.currentIcon'); // Get icon element from weatherAPI
+   
+   
     // Extract the current and location data
     const current = data.current;
     const location = data.location;
+
+    // Set weather icon
+    currentIcon.src = current.condition.icon; // Set the src attribute of the image
+    currentIcon.alt = current.condition.text; //Set alt text for accessibility
 
     weatherInfo.innerHTML = `
     <h1>${Math.round(current.temp_c)}℃</h1>
@@ -164,6 +170,11 @@ function displayCurrentWeather(data) {
 }
 
  function displayForecast(data) {
+    console.log('Forecast data received:', data);
+    console.log('Does data.forecast exist?', !!data.forecast);
+    console.log('Does data.forecast.forecastday exist?', !!(data.forecast && data.forecast.forecastday))
+
+
      const forecastBody = document.getElementById('forecastCards');
      forecastBody.innerHTML = '';
 
