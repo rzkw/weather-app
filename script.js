@@ -189,7 +189,7 @@ function displayCurrentWeather(data) {
             forecastCard.className = 'cardDay';
             forecastCard.innerHTML = `
                 <p>${date}</p>
-                <i></i>
+                <img src="${day.day.condition.icon}" alt="${day.day.condition.text}">
                 <p class="tempForecast">${Math.round(day.day.maxtemp_c)}°/${Math.round(day.day.mintemp_c)}°</p>
             `;
             // `
